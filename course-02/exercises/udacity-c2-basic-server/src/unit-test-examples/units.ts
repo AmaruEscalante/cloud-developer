@@ -19,4 +19,4 @@ export const concat = (a: string, b: string) => {
 // it should take two string paramaters.
 // it should return one string combining the two strings.
 // it should throw an error if either of the strings are empty.
-// ensure your function is exported.
+// ensure your function is exported. concat
