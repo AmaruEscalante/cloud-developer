@@ -20,17 +20,12 @@ export const s3 = new AWS.S3({
  * @Returns:
  *    a url as a string
  */
-export function getGetSignedUrl( key: string ): string{
 
+ export function getGetSignedUrl( key: string ): string{
   const signedUrlExpireSeconds = 60 * 5
-
-    const url = s3.getSignedUrl('getObject', {
-        Bucket: c.aws_media_bucket,
-        Key: key,
-        Expires: signedUrlExpireSeconds
-      });
-
-    return url;
+  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds }
+  const url = s3.getSignedUrl('getObject', param);
+  return url;
 }
 
 /* getPutSignedUrl generates an aws signed url to put an item
@@ -40,14 +35,8 @@ export function getGetSignedUrl( key: string ): string{
  *    a url as a string
  */
 export function getPutSignedUrl( key: string ){
-
-    const signedUrlExpireSeconds = 60 * 5
-
-    const url = s3.getSignedUrl('putObject', {
-      Bucket: c.aws_media_bucket,
-      Key: key,
-      Expires: signedUrlExpireSeconds
-    });
-
-    return url;
+  const signedUrlExpireSeconds = 60 * 5
+  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds }
+  const url = s3.getSignedUrl('putObject', param);
+  return url;
 }

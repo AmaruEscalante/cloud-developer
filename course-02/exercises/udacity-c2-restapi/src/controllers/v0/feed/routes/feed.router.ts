@@ -39,16 +39,19 @@ router.get('/:id', async (req: Request, res:Response) => {
 
 
 // update a specific resource
-router.patch('/:id', async (req: Request, res: Response) => {
+router.patch('/:id',requireAuth,
+ async (req: Request, res: Response) => {
         //@TODO try it yourself
         let { id } = req.params;
-        const caption = req.body.caption;
-        console.log({caption}['caption']);
-        console.log({ id });
+        //const caption = req.body.caption;
+        let { caption } = req.body;
 
-        await FeedItem.update({caption: {caption}['caption']}, {
+        console.log(caption);
+        console.log( id );
+
+        await FeedItem.update({caption: caption}, {
             where: {
-                id: { id }['id']
+                id: id
             }
         });
         return res.status(200)
