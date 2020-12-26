@@ -26,7 +26,7 @@ router.get('/:id', async (req: Request, res:Response) => {
         return res.status(400)
                     .send(`no id sent`);
     }
-
+    console.log({id})
     //Get the ID
     const item = await FeedItem.findByPk(id);
     if (item === null){
@@ -39,11 +39,20 @@ router.get('/:id', async (req: Request, res:Response) => {
 
 
 // update a specific resource
-router.patch('/:id', 
-    requireAuth, 
-    async (req: Request, res: Response) => {
+router.patch('/:id', async (req: Request, res: Response) => {
         //@TODO try it yourself
-        res.send(500).send("not implemented")
+        let { id } = req.params;
+        const caption = req.body.caption;
+        console.log({caption}['caption']);
+        console.log({ id });
+
+        await FeedItem.update({caption: {caption}['caption']}, {
+            where: {
+                id: { id }['id']
+            }
+        });
+        return res.status(200)
+                .send({message: 'item updated'});
 });
 
 
