@@ -27,6 +27,7 @@ router.get('/:id', async (req: Request, res:Response) => {
                     .send(`no id sent`);
     }
     console.log({id})
+    console.log(process.env.POSTGRES_USERNAME)
     //Get the ID
     const item = await FeedItem.findByPk(id);
     if (item === null){
@@ -48,6 +49,7 @@ router.patch('/:id',requireAuth,
 
         console.log(caption);
         console.log( id );
+        
 
         await FeedItem.update({caption: caption}, {
             where: {

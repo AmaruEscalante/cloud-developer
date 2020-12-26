@@ -1,13 +1,13 @@
 export const config = {
   "dev": {
-    "username": "udagramdev",
-    "password": "ccoyllo20",
-    "database": "udagramdev",
-    "host": "udagramdev.cayfhfsqkaj0.sa-east-1.rds.amazonaws.com",
+    "username": process.env.POSTGRES_USERNAME,
+    "password": process.env.POSTGRES_PASSWORD,
+    "database": process.env.POSTGRES_DATABASE,
+    "host": process.env.POSTGRES_HOST,
     "dialect": "postgres",
-    "aws_region": "sa-east-1",
-    "aws_profile": "user1",
-    "aws_media_bucket": "udagram-escalante-dev"
+    "aws_region": process.env.AWS_REGION,
+    "aws_profile": process.env.AWS_PROFILE,
+    "aws_media_bucket": process.env.AWS_MEDIA_BUCKET
   },
   "prod": {
     "username": "",
@@ -17,5 +17,3 @@ export const config = {
     "dialect": "postgres"
   }
 }
-
-
