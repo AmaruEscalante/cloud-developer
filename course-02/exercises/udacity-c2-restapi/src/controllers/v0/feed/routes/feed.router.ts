@@ -40,8 +40,9 @@ router.get('/:id', async (req: Request, res:Response) => {
 
 
 // update a specific resource
-router.patch('/:id',requireAuth,
- async (req: Request, res: Response) => {
+router.patch('/:id',
+    requireAuth,
+    async (req: Request, res: Response) => {
         //@TODO try it yourself
         let { id } = req.params;
         //const caption = req.body.caption;
