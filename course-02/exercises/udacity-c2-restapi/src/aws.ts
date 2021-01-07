@@ -9,7 +9,7 @@ const c = config.dev;
 
 //Configure AWS
 if(c.aws_profile !== "DEPLOYED") {
-  var credentials = new AWS.SharedIniFileCredentials({profile: 'default'});
+  var credentials = new AWS.SharedIniFileCredentials({profile: c.aws_profile});
   AWS.config.credentials = credentials;
 }
 
@@ -28,9 +28,9 @@ export const s3 = new AWS.S3({
  */
 
  export function getGetSignedUrl( key: string ): string{
-  const signedUrlExpireSeconds = 60 * 5
-  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds }
-  const url = s3.getSignedUrl('getObject', param);
+  const signedUrlExpireSeconds = 60 * 5;
+  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds };
+  const url: string = s3.getSignedUrl('getObject', param);
   return url;
 }
 
@@ -40,9 +40,9 @@ export const s3 = new AWS.S3({
  * @Returns:
  *    a url as a string
  */
-export function getPutSignedUrl( key: string ){
-  const signedUrlExpireSeconds = 60 * 5
-  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds }
-  const url = s3.getSignedUrl('putObject', param);
+export function getPutSignedUrl( key: string ): string{
+  const signedUrlExpireSeconds = 60 * 5;
+  const param = { Bucket: c.aws_media_bucket, Key: key, Expires: signedUrlExpireSeconds };
+  const url: string = s3.getSignedUrl('putObject', param);
   return url;
 }
