@@ -42,7 +42,9 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
     // Send file
     res.status(200).sendFile(promise);
     // delete local files
-    deleteLocalFiles([promise]);
+    res.on('finish', function(){
+      deleteLocalFiles([promise]);
+    });
   });
   //! END @TODO1
   
